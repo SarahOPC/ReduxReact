@@ -4,6 +4,7 @@ import { FeatureItemComponent } from "../components/FeatureItemComponent";
 import chatIcon from '../assets/icon-chat.png';
 import moneyIcon from '../assets/icon-money.png';
 import securtityIcon from '../assets/icon-security.png';
+import { FooterComponent } from "../components/FooterComponent";
 
 const HomeContainer = styled.div`
 `;
@@ -46,6 +47,7 @@ function HomePage() {
                     />
                 ))}
             </HomeComponent>
+            <FooterComponent />
         </HomeContainer>
     )
 }
