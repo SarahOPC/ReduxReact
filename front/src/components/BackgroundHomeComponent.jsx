@@ -8,15 +8,20 @@ const BankTreeImage = styled.img`
     position: relative;
     height: 300px;
     margin-top: -50px;
-    z-index: -1;
+    z-index: 0;
+`;
+
+const BackgroundHomeComponentContainer = styled.div`
+    display: flex;
+    position: relative;
 `;
 
 function BackgroundHomeComponent() {
     return (
-        <div>
+        <BackgroundHomeComponentContainer>
             <BankTreeImage src={bankTree} alt='Small plant with coins on the roots' />
             <LaiusComponent />
-        </div>
+        </BackgroundHomeComponentContainer>
     )
 }
 

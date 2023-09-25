@@ -11,7 +11,7 @@ const MenuContainer = styled.div`
 const MenuItem = styled.div`
     font-weight: bold;
     text-decoration: none;
-    margin: 0em 0.4em;
+    margin-right: 1.5em;
 `;
 
 const IconContainer = styled.div`
@@ -19,6 +19,7 @@ const IconContainer = styled.div`
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
+    margin-right: 0.5em;
 `;
 
 function MenuComponent() {

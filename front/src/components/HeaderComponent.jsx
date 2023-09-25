@@ -8,6 +8,8 @@ const HeaderContainer = styled.div`
     align-items: center;
     padding: 5px 20px;
     background-color: #FFFFFF;
+    position: relative;
+    z-index: 2;
 `;
 
 function HeaderComponent() {
