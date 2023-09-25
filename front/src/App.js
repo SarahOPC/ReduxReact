@@ -1,11 +1,9 @@
-import { HeaderComponent } from "./components/HeaderComponent";
-import { HomePage } from "./pages/HomePage";
+import MainRouter from "./pages/Router";
 
 function App() {
   return (
-    <div className="App">
-      <HeaderComponent />
-      <HomePage />
+    <div>
+      <MainRouter />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import chatIcon from '../assets/icon-chat.png';
 import moneyIcon from '../assets/icon-money.png';
 import securtityIcon from '../assets/icon-security.png';
 import { FooterComponent } from "../components/FooterComponent";
+import { HeaderComponent } from "../components/HeaderComponent";
 
 const HomeContainer = styled.div`
 `;
@@ -36,6 +37,7 @@ function HomePage() {
     ];
     return (
         <HomeContainer>
+            <HeaderComponent />
             <BackgroundHomeComponent />
             <HomeComponent>
                 {featureItensData.map((item, index) => (

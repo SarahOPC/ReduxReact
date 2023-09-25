@@ -4,6 +4,7 @@ const FooterContainer = styled.div`
     display: flex;
     justify-content: center;
     border-top: solid #CCCCCC 0.15em;
+    background-color: #FFFFFF;
 
     p {
         padding-top: 0.7em;
