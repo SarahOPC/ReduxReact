@@ -14,6 +14,7 @@ const BankTreeImage = styled.img`
 const BackgroundHomeComponentContainer = styled.div`
     display: flex;
     position: relative;
+    margin-bottom: 3.7em;
 `;
 
 function BackgroundHomeComponent() {
