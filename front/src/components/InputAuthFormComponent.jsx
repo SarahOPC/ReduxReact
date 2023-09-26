@@ -31,7 +31,13 @@ function InputAuthFormComponent () {
                 <label htmlFor="rememberMe">
                     <input type="checkbox" name="remember" id="RememberMe"/> Remember me
                 </label><br></br>
-                <ButtonsComponent type="submit" buttonContent="Sign In" />
+                <ButtonsComponent
+                    type="submit"
+                    buttonContent="Sign In"
+                    customStyles={{
+                        textDecoration: "underline"
+                    }}
+                />
             </form>
         </InputAuthFormContainer>
     )

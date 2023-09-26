@@ -5,6 +5,9 @@ const FooterContainer = styled.div`
     justify-content: center;
     border-top: solid #CCCCCC 0.15em;
     background-color: #FFFFFF;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 
     p {
         padding-top: 0.7em;
