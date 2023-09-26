@@ -15,9 +15,15 @@ const Welcome = styled.div`
 const WelcomeName = styled.div`
 `;
 
+const ProfileUserContainer = styled.div`
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+`;
+
 function ProfileComponent() {
     return (
-        <div>
+        <ProfileUserContainer>
             <WelcomeElement>
                 <Welcome>Welcome back</Welcome>
                 <WelcomeName>Tony Jarvis!</WelcomeName>
@@ -38,7 +44,7 @@ function ProfileComponent() {
             <AccountComponent>
             </AccountComponent>
 
-        </div>
+        </ProfileUserContainer>
     )
 }
 

@@ -6,7 +6,6 @@ import { ProfileComponent } from "../components/ProfileComponent";
 
 const ProfilePageContainer = styled.div`
     position: relative;
-    text-align: -webkit-center;
 `;
 
 const BackgroundContainer = styled.div`
@@ -18,8 +17,6 @@ const BackgroundContainer = styled.div`
 `;
 
 const ProfileComponentContainer = styled.div`
-    background-color: blue; /* change to transparent +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    width: 90%;
     display: flex;
     justify-content: center;
 `;
