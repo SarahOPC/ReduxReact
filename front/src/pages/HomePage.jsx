@@ -37,7 +37,7 @@ function HomePage() {
     ];
     return (
         <HomeContainer>
-            <HeaderComponent />
+            <HeaderComponent menuContent="Sign In" />
             <BackgroundHomeComponent />
             <HomeComponent>
                 {featureItensData.map((item, index) => (

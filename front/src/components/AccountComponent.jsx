@@ -36,7 +36,7 @@ function AccountComponent() {
         <AccountItems>
             <AccountContainer>
                 <AccountElement>
-                    <AccountTitle>Title</AccountTitle>
+                    <AccountTitle>Argent Bank Title (x1313)</AccountTitle>
                     <AccountAmount>$2025.79</AccountAmount>
                     <AccountDescription>Available Balance</AccountDescription>
                 </AccountElement>
@@ -44,7 +44,7 @@ function AccountComponent() {
                     type="button"
                     buttonContent="View transactions"
                     customStyles={{
-                        fontSize: "1em",
+                        fontSize: "1.1em",
                         borderRightStyle: "outset",
                         borderBottomStyle: "outset",
                         borderColor: "#B3B3B3"

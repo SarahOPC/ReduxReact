@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { HeaderComponent } from "../components/HeaderComponent";
 import { FooterComponent } from "../components/FooterComponent";
 import { PurpleBackground } from "../components/BackgroundPurpleComponent";
-import { ProfileComponent } from "../components/ProfileComponent";
+import { EditProfileComponent } from "../components/EditProfile";
+// import { ProfileComponent } from "../components/ProfileComponent";
 
 const ProfilePageContainer = styled.div`
     position: relative;
@@ -22,18 +23,33 @@ const ProfileComponentContainer = styled.div`
 `;
 
 function ProfilePage() {
-    return (
-        <ProfilePageContainer>
-            <HeaderComponent />
-            <BackgroundContainer>
-                <PurpleBackground />
-            </BackgroundContainer>
-            <ProfileComponentContainer>
-                <ProfileComponent />
-            </ProfileComponentContainer>
-            <FooterComponent />
-        </ProfilePageContainer>
-    )
-}
+        // if() {
+            return (
+                <ProfilePageContainer>
+                    <HeaderComponent menuContent="Sign Out" />
+                    <BackgroundContainer>
+                        <PurpleBackground />
+                    </BackgroundContainer>
+                    <ProfileComponentContainer>
+                        <EditProfileComponent />
+                    </ProfileComponentContainer>
+                    <FooterComponent />
+                </ProfilePageContainer>
+            )
+        //} else {
+             /* return (
+                <ProfilePageContainer>
+                    <HeaderComponent menuContent="Sign Out" />
+                    <BackgroundContainer>
+                        <PurpleBackground />
+                    </BackgroundContainer>
+                    <ProfileComponentContainer>
+                        <ProfileComponent />
+                    </ProfileComponentContainer>
+                    <FooterComponent />
+                </ProfilePageContainer>
+            ) */
+        }
+//}
 
 export { ProfilePage };

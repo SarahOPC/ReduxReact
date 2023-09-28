@@ -22,13 +22,13 @@ const IconContainer = styled.div`
     margin-right: 0.5em;
 `;
 
-function MenuComponent() {
+function MenuComponent({ content }) {
     return (
         <MenuContainer>
             <IconContainer>
                 <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', }} />
             </IconContainer>
-            <MenuItem>Sign In</MenuItem>
+            <MenuItem>{content}</MenuItem>
         </MenuContainer>
     )
 }
