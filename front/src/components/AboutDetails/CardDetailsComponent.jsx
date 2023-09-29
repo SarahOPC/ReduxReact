@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TransactionDetail } from "../components/TransactionDetailComponent";
+import { TransactionDetail } from "./TransactionDetailComponent";
 
 const CardDetailsContainer = styled.div`
 `;

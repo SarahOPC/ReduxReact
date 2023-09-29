@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { HeaderComponent } from "../components/HeaderComponent";
-import { FooterComponent } from "../components/FooterComponent";
-import { PurpleBackground } from "../components/BackgroundPurpleComponent";
-import { SignInComponent } from "../components/SignInComponent";
+import { HeaderComponent } from "../components/AboutHeader&Footer/HeaderComponent";
+import { FooterComponent } from "../components/AboutHeader&Footer/FooterComponent";
+import { PurpleBackground } from "../components/AboutBackground/BackgroundPurpleComponent";
+import { SignInComponent } from "../components/AboutSignIn/SignInComponent";
 
 const LogInPageContainer = styled.div`
     position: relative;

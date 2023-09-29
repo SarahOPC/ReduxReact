@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const MenuContainer = styled.div`
@@ -22,13 +23,15 @@ const IconContainer = styled.div`
     margin-right: 0.5em;
 `;
 
-function MenuComponent({ content }) {
+function MenuComponent({ content, to }) {
     return (
         <MenuContainer>
             <IconContainer>
                 <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', }} />
             </IconContainer>
-            <MenuItem>{content}</MenuItem>
+            <Link to={to}>
+                <MenuItem>{content}</MenuItem>
+            </Link>
         </MenuContainer>
     )
 }

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CollapseComponent } from "../components/CollapseComponent";
+import { CollapseComponent } from "./CollapseComponent";
 
 const TransactionContainer = styled.div`
 `;

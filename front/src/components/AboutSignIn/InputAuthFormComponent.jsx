@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { ButtonsComponent } from "./ButtonsComponent";
+import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
+import { useNavigate } from "react-router";
 
 const InputAuthFormContainer = styled.div`
     width: 95%;
@@ -21,6 +22,7 @@ const Input = styled.input`
 `;
 
 function InputAuthFormComponent () {
+    const navigate = useNavigate(); // Hook that allows to navigate between pages
     return (
         <InputAuthFormContainer>
             <form>
@@ -34,6 +36,9 @@ function InputAuthFormComponent () {
                 <ButtonsComponent
                     type="submit"
                     buttonContent="Sign In"
+                    onClick={() => {
+                        navigate('/profile');
+                    }}
                     customStyles={{
                         textDecoration: "underline"
                     }}

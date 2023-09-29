@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { ButtonsComponent } from "./ButtonsComponent";
+import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
 import { AccountComponent } from "./AccountComponent";
+import { useNavigate } from "react-router";
 
 const WelcomeElement = styled.div`
     color: #FFFFFF;
@@ -22,6 +23,7 @@ const ProfileUserContainer = styled.div`
 `;
 
 function ProfileComponent() {
+    const navigate = useNavigate();
     return (
         <ProfileUserContainer>
             <WelcomeElement>
@@ -31,6 +33,9 @@ function ProfileComponent() {
             <ButtonsComponent 
                 type="button"
                 buttonContent="Edit Name"
+                onClick={() => {
+                    navigate('/editProfile');
+                }}
                 customStyles={{
                     width: "fit-content",
                     padding: "0.7em",

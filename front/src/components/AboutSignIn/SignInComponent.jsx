@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { InputAuthFormComponent } from '../components/InputAuthFormComponent';
+import { InputAuthFormComponent } from './InputAuthFormComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 

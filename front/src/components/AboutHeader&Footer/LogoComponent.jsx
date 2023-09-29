@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Logo from '../assets/argentBankLogo.png';
+import Logo from '../../assets/argentBankLogo.png';
 
 const LogoImage = styled.img`
     max-width: 100%;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AccountComponent } from "./AccountComponent";
+import { AccountComponent } from "../AboutProfile/AccountComponent";
 
 const CardTitleContainer = styled.div`
 `;

@@ -2,8 +2,7 @@ import styled from "styled-components";
 import { HeaderComponent } from "../components/AboutHeader&Footer/HeaderComponent";
 import { FooterComponent } from "../components/AboutHeader&Footer/FooterComponent";
 import { PurpleBackground } from "../components/AboutBackground/BackgroundPurpleComponent";
-// import { EditProfileComponent } from "../components/AboutProfile/EditProfile";
-import { ProfileComponent } from "../components/AboutProfile/ProfileComponent";
+import { EditProfileComponent } from "../components/AboutProfile/EditProfile";
 
 const ProfilePageContainer = styled.div`
     position: relative;
@@ -22,7 +21,7 @@ const ProfileComponentContainer = styled.div`
     justify-content: center;
 `;
 
-function ProfilePage() {
+function EditProfilePage() {
     return (
         <ProfilePageContainer>
             <HeaderComponent menuContent="Sign Out" to="/" />
@@ -30,23 +29,11 @@ function ProfilePage() {
                 <PurpleBackground />
             </BackgroundContainer>
             <ProfileComponentContainer>
-                <ProfileComponent />
+                <EditProfileComponent />
             </ProfileComponentContainer>
             <FooterComponent />
         </ProfilePageContainer>
-    )
+        )
 }
-            /* return (
-                <ProfilePageContainer>
-                    <HeaderComponent menuContent="Sign Out" to="/" />
-                    <BackgroundContainer>
-                        <PurpleBackground />
-                    </BackgroundContainer>
-                    <ProfileComponentContainer>
-                        <EditProfileComponent />
-                    </ProfileComponentContainer>
-                    <FooterComponent />
-                </ProfilePageContainer>
-            ) */
 
-export { ProfilePage };
+export { EditProfilePage };

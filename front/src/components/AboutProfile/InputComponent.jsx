@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { ButtonsComponent } from "./ButtonsComponent";
+import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
+import { useNavigate } from "react-router";
 
 const InputContainer = styled.div`
     display: flex;
@@ -32,15 +33,40 @@ const RightBox = styled.div`
 `;
 
 function InputComponent({ userFirstNameToEdit, userLastNameToEdit }) {
+    const navigate = useNavigate();
     return (
         <InputContainer>
             <LeftBox>
             <input type="text" id="userFirstNameToEdit" name="userFirstNameToEdit" placeholder={userFirstNameToEdit}></input>
-            <ButtonsComponent type="submit" buttonContent="Save" customStyles={{fontSize: "0.5em", padding: "0.5em 1.5em", maxWidth: "3em", marginTop: "0.5em"}} />
+            <ButtonsComponent
+                type="submit"
+                buttonContent="Save"
+                onClick={() => {
+                    navigate('/profile');
+                }}
+                customStyles={{
+                    fontSize: "0.5em",
+                    padding: "0.5em 1.5em",
+                    maxWidth: "3em",
+                    marginTop: "0.5em"
+                }}
+            />
             </LeftBox>
             <RightBox>
             <input type="text" id="userLastNameToEdit" name="userLastNameToEdit" placeholder={userLastNameToEdit}></input>
-            <ButtonsComponent type="button" buttonContent="Cancel" customStyles={{fontSize: "0.5em", padding: "0.5em 1.5em", maxWidth: "5em", marginTop: "0.5em"}} />
+            <ButtonsComponent
+                type="button"
+                buttonContent="Cancel"
+                onClick={() => {
+                    navigate('/profile');
+                }}
+                customStyles={{
+                    fontSize: "0.5em",
+                    padding: "0.5em 1.5em",
+                    maxWidth: "5em",
+                    marginTop: "0.5em"
+                }}
+            />
             </RightBox>
         </InputContainer>
     )

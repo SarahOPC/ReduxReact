@@ -1,5 +1,5 @@
-import bankTree from '../assets/bank-tree.jpeg';
-import { LaiusComponent } from './LaiusComponent';
+import bankTree from '../../assets/bank-tree.jpeg';
+import { LaiusComponent } from '../AboutHome/LaiusComponent';
 import styled from 'styled-components';
 
 const BankTreeImage = styled.img`

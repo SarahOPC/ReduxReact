@@ -10,14 +10,19 @@ const Button = styled.div`
     font-size: 1.2em;
 `;
 
-function ButtonsComponent( { type, buttonContent, customStyles }) {
+function ButtonsComponent( { type, buttonContent, customStyles, onClick }) {
     const buttonType = type === 'submit' ? 'submit' : 'button';
     const buttonStyles = {...Button.defaultProps, ...customStyles};
     // buttonStyles is an object merging default Styles of Button component with customStyles
     //... is used to combine the two objects (spread operator)
     // defaultProps is used to authorized changing the default properties as needed in other components
+    const handleClick = () => {
+        if(onClick) {
+            onClick(); // Will call the onClick function if it is provided in the code
+        }
+    }
     return (
-        <Button type={buttonType} style={buttonStyles}>
+        <Button type={buttonType} style={buttonStyles} onClick={handleClick}>
             {buttonContent}
         </Button>
     )

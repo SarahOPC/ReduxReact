@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { BackgroundHomeComponent } from "../components/BackgroundHomeComponent";
-import { FeatureItemComponent } from "../components/FeatureItemComponent";
+import { BackgroundHomeComponent } from "../components/AboutBackground/BackgroundHomeComponent";
+import { FeatureItemComponent } from "../components/AboutHome/FeatureItemComponent";
 import chatIcon from '../assets/icon-chat.png';
 import moneyIcon from '../assets/icon-money.png';
 import securtityIcon from '../assets/icon-security.png';
-import { FooterComponent } from "../components/FooterComponent";
-import { HeaderComponent } from "../components/HeaderComponent";
+import { FooterComponent } from "../components/AboutHeader&Footer/FooterComponent";
+import { HeaderComponent } from "../components/AboutHeader&Footer/HeaderComponent";
 
 const HomeContainer = styled.div`
 `;
@@ -37,7 +37,7 @@ function HomePage() {
     ];
     return (
         <HomeContainer>
-            <HeaderComponent menuContent="Sign In" />
+            <HeaderComponent menuContent="Sign In" to="/login" />
             <BackgroundHomeComponent />
             <HomeComponent>
                 {featureItensData.map((item, index) => (
