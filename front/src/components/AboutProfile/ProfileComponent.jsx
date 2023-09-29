@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
 import { AccountComponent } from "./AccountComponent";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+// useSelector allows to retrieve informations in Redux
 
 const WelcomeElement = styled.div`
     color: #FFFFFF;
@@ -24,11 +26,13 @@ const ProfileUserContainer = styled.div`
 
 function ProfileComponent() {
     const navigate = useNavigate();
+    const user = useSelector((state) => state.user);
+
     return (
         <ProfileUserContainer>
             <WelcomeElement>
                 <Welcome>Welcome back</Welcome>
-                <WelcomeName>Tony Jarvis!</WelcomeName>
+                <WelcomeName>{user.userFirstName} {user.userLastName}</WelcomeName>
             </WelcomeElement>
             <ButtonsComponent 
                 type="button"
