@@ -1,12 +1,10 @@
-import { Provider } from "react-redux";
 import MainRouter from "./pages/Router";
-import { store } from "./reduxStore";
 
 function App() {
   return (
-    <Provider store={store}>
+    <div>
       <MainRouter />
-    </Provider>
+    </div>
   );
 }
 

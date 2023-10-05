@@ -51,6 +51,10 @@ function InputComponent({ userFirstNameToEdit, userLastNameToEdit }) {
         navigate('/profile');
     };
 
+    const handleCancelClick = () => {
+        navigate('/profile');
+    }
+
     return (
         <InputContainer>
             <LeftBox>
@@ -80,7 +84,7 @@ function InputComponent({ userFirstNameToEdit, userLastNameToEdit }) {
             <ButtonsComponent
                 type="button"
                 buttonContent="Cancel"
-                onClick={handleSaveClick}
+                onClick={handleCancelClick}
                 customStyles={{
                     fontSize: "0.5em",
                     padding: "0.5em 1.5em",

@@ -1,15 +1,66 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 // We use a slice to define a piece of the application's state and the actions that can be performed on that state
 // A slice represents a single unit of Redux state.
 // It’s a collection of reducer logic and actions for a single feature in the app, typically defined together in a single file.
+
+const postAuth = createAsyncThunk(
+    // type =
+    "users/postAuthData",
+    // payload =
+    async (arg, { rejectWithValue }) => {
+        try {
+            const {data} = await axios.post("http://localhost:3001/api/v1");
+            return data;
+        } catch (error) {
+            rejectWithValue(error.response.data);
+        }
+    }
+)
+
+const authSlice = createSlice({
+    name: "authentication",
+    initialState: {
+        isAuthenticated: false,
+        token: null,
+        isLoading: false,
+    },
+    reducers: {
+        setAuthentication: (state, action) => {
+            state.isAuthenticated = action.payload.isAuthenticated;
+            state.token = action.payload.token;
+        },
+        clearAuthentication: (state, action) => {
+            state.isAuthenticated = false;
+            state.token = null;
+        },
+    },
+    extraReducers: {
+        [postAuth.pending]: (state, { payload }) => {
+            state.isAuthenticated = false;
+            state.isLoading = true;
+        },
+        [postAuth.fulfilled]: (state, { payload }) => {
+            state.isAuthenticated = true;
+            state.token = payload.token;
+            state.isLoading = false;
+        },
+        [postAuth.rejected]: (state, { payload }) => {
+            state.isAuthenticated = false;
+            state.token = null;
+            state.isLoading = false;
+        },
+    }
+})
 
 const userSlice = createSlice({
     name: "user",
     initialState: [],
     reducers: {
         // {type: user/changeFirstName, payload: "new firstName"}
-        // splice(userIndex, 1, {userFirstName: action.payload}) removes firstname at position "userIndex" one element and replace it by action.payload
+        // splice(userIndex, 1, {userFirstName: action.payload}) removes
+        // firstname at position "userIndex" one element and replace it by action.payload
         changeFirstName: (state, action) => {
             const userIndex = state.findIndex(user => user.id === "userId");
             // returns the index of the element if it's found or -1 if it's not found
@@ -18,7 +69,8 @@ const userSlice = createSlice({
             }
         },
         // {type: user/changeLastName, payload: "new lastName"}
-        // splice(userIndex, 1, {userLastName: action.payload}) removes lastname at position "userIndex" one element and replace it by action.payload
+        // splice(userIndex, 1, {userLastName: action.payload}) removes
+        // lastname at position "userIndex" one element and replace it by action.payload
         changeLastName: (state, action) => {
             const userIndex = state.findIndex(user => user.id === "userId");
             // returns the index of the element if it's found or -1 if it's not found
@@ -29,13 +81,16 @@ const userSlice = createSlice({
     }
 })
 
-// action creators // Helpers to not re write every time the functions with type and payload
+// action creators
+// Helpers to not re write every time the functions with type and payload
 // Reduce risks of errors (typo, ...)
 export const { changeFirstName, changeLastName } = userSlice.actions;
+export const { setAuthentication, clearAuthentication } = authSlice.actions;
 
 // Global store = authorize to use in the reducer all the functions included in the reducers of each slice
 export const store = configureStore({
     reducer: {
-        user: userSlice.reducer
+        user: userSlice.reducer,
+        auth: authSlice.reducer,
     }
 });

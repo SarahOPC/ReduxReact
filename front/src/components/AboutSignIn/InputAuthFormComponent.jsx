@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import Loader from "../LoaderComponent";
 
 const InputAuthFormContainer = styled.div`
     width: 95%;
@@ -23,6 +25,17 @@ const Input = styled.input`
 
 function InputAuthFormComponent () {
     const navigate = useNavigate(); // Hook that allows to navigate between pages
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const isLoading = useSelector((state) => state.auth.isLoading);
+
+    const handleSignIn = () => {
+        if(isAuthenticated) {
+            navigate('/profile');
+        } else {
+            navigate('/login');
+            alert('An error has occurred during the process and authentication failed. Please try again')
+        }
+    }
     return (
         <InputAuthFormContainer>
             <form>
@@ -36,14 +49,14 @@ function InputAuthFormComponent () {
                 <ButtonsComponent
                     type="submit"
                     buttonContent="Sign In"
-                    onClick={() => {
-                        navigate('/profile');
-                    }}
+                    onClick={handleSignIn}
                     customStyles={{
                         textDecoration: "underline"
                     }}
                 />
             </form>
+            {/* Will conditionally render the loader if isLoading is true */}
+            {isLoading && <Loader />}
         </InputAuthFormContainer>
     )
 }
