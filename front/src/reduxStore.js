@@ -5,15 +5,20 @@ import axios from "axios";
 // A slice represents a single unit of Redux state.
 // It’s a collection of reducer logic and actions for a single feature in the app, typically defined together in a single file.
 
-const postAuth = createAsyncThunk(
+export const postAuth = createAsyncThunk(
     // type =
     "users/postAuthData",
     // payload =
-    async (arg, { rejectWithValue }) => {
+    async (navigate, { rejectWithValue }) => {
+        console.log("postAuth function called");
         try {
-            const {data} = await axios.post("http://localhost:3001/api/v1");
-            return data;
+            console.log("postAuth try called");
+            const response = await axios.post("http://localhost:3001/api/v1");
+            console.log("postAuth data : ", response);
+            navigate('/profile');
+            return response.data;
         } catch (error) {
+            console.log("postAuth error called");
             rejectWithValue(error.response.data);
         }
     }
@@ -36,23 +41,24 @@ const authSlice = createSlice({
             state.token = null;
         },
     },
-    extraReducers: {
-        [postAuth.pending]: (state, { payload }) => {
+    extraReducers: (builder) => {
+        builder
+        .addCase(postAuth.pending, (state) => {
             state.isAuthenticated = false;
             state.isLoading = true;
-        },
-        [postAuth.fulfilled]: (state, { payload }) => {
+        })
+        .addCase(postAuth.fulfilled, (state, { payload }) => {
             state.isAuthenticated = true;
             state.token = payload.token;
             state.isLoading = false;
-        },
-        [postAuth.rejected]: (state, { payload }) => {
+        })
+        .addCase(postAuth.rejected, (state) => {
             state.isAuthenticated = false;
             state.token = null;
             state.isLoading = false;
-        },
+        });
     }
-})
+});
 
 const userSlice = createSlice({
     name: "user",
@@ -79,7 +85,7 @@ const userSlice = createSlice({
             }
         },
     }
-})
+});
 
 // action creators
 // Helpers to not re write every time the functions with type and payload
