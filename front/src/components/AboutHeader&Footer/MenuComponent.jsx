@@ -23,13 +23,13 @@ const IconContainer = styled.div`
     margin-right: 0.5em;
 `;
 
-function MenuComponent({ content, to }) {
+function MenuComponent({ content, to, onClick }) {
     return (
         <MenuContainer>
             <IconContainer>
                 <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', }} />
             </IconContainer>
-            <Link to={to}>
+            <Link to={to} onClick={onClick}>
                 <MenuItem>{content}</MenuItem>
             </Link>
         </MenuContainer>

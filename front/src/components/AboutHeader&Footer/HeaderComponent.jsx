@@ -12,11 +12,11 @@ const HeaderContainer = styled.div`
     z-index: 2;
 `;
 
-function HeaderComponent({ menuContent, to }) {
+function HeaderComponent({ menuContent, to, onClick }) {
     return (
         <HeaderContainer>
             <LogoComponent />
-            <MenuComponent content={menuContent} to={to} />
+            <MenuComponent content={menuContent} to={to} onClick={onClick} />
         </HeaderContainer>
     )
 }

@@ -4,6 +4,8 @@ import { FooterComponent } from "../components/AboutHeader&Footer/FooterComponen
 import { PurpleBackground } from "../components/AboutBackground/BackgroundPurpleComponent";
 // import { EditProfileComponent } from "../components/AboutProfile/EditProfile";
 import { ProfileComponent } from "../components/AboutProfile/ProfileComponent";
+import { useDispatch } from "react-redux";
+import { clearAuthentication } from "../reduxStore";
 
 const ProfilePageContainer = styled.div`
     position: relative;
@@ -23,9 +25,19 @@ const ProfileComponentContainer = styled.div`
 `;
 
 function ProfilePage() {
+    const dispatch = useDispatch();
+
+    const handleSignOut = () => {
+        dispatch(clearAuthentication())
+    };
+
     return (
         <ProfilePageContainer>
-            <HeaderComponent menuContent="Sign Out" to="/" />
+            <HeaderComponent
+                menuContent="Sign Out"
+                onClick={handleSignOut}
+                to="/"
+            />
             <BackgroundContainer>
                 <PurpleBackground />
             </BackgroundContainer>

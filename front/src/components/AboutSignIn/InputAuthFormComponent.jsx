@@ -28,11 +28,11 @@ function InputAuthFormComponent () {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const dispatch = useDispatch();
 
-    const handleSignIn = async () => {
+    const handleSignIn = () => {
         try {
             const email = document.getElementById("Username").value;
             const password = document.getElementById("Password").value;
-            await dispatch(postAuth({ email, password, navigate }));
+            dispatch(postAuth({ email, password, navigate }));
             if(isAuthenticated) {
                 navigate('/profile');
             }

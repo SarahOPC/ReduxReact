@@ -5,6 +5,9 @@ import axios from "axios";
 // A slice represents a single unit of Redux state.
 // It’s a collection of reducer logic and actions for a single feature in the app, typically defined together in a single file.
 
+
+// Redux thunk is to handle asynchronous actions
+// Axios is to handle http requests from the React App
 export const postAuth = createAsyncThunk(
     // type =
     "users/postAuthData",
