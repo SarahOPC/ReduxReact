@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../LoaderComponent";
 import { postAuth } from "../../reduxStore";
 
 const InputAuthFormContainer = styled.div`
@@ -27,7 +26,6 @@ const Input = styled.input`
 function InputAuthFormComponent () {
     const navigate = useNavigate(); // Hook that allows to navigate between pages
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    const isLoading = useSelector((state) => state.auth.isLoading);
     const dispatch = useDispatch();
 
     const handleSignIn = async () => {
@@ -63,8 +61,6 @@ function InputAuthFormComponent () {
                     }}
                 />
             </form>
-            {/* Will conditionally render the loader if isLoading is true */}
-            {isLoading && <Loader />}
         </InputAuthFormContainer>
     )
 }

@@ -23,11 +23,9 @@ export const postAuth = createAsyncThunk(
             const response = await axios.post("http://localhost:3001/api/v1/user/login", data, config);
 
             navigate('/profile');
-            console.log(response.data);
             return response.data;
 
         } catch (error) {
-            console.log("postAuth error called : ", error.message);
             rejectWithValue(error.response.data);
         }
     }
