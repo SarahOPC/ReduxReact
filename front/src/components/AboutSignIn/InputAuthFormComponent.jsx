@@ -3,7 +3,7 @@ import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../LoaderComponent";
-import { setAuthentication, postAuth } from "../../reduxStore";
+import { postAuth } from "../../reduxStore";
 
 const InputAuthFormContainer = styled.div`
     width: 95%;
@@ -32,20 +32,15 @@ function InputAuthFormComponent () {
 
     const handleSignIn = async () => {
         try {
-            const response = await dispatch(postAuth());
-            console.log("handleSignIn : ", response);
-            console.log(isAuthenticated);
+            const email = document.getElementById("Username").value;
+            const password = document.getElementById("Password").value;
+            await dispatch(postAuth({ email, password, navigate }));
             if(isAuthenticated) {
-                const token = response.payload.token;
-                console.log("handleSignInToken : ", token);
-                dispatch(setAuthentication({ isAuthenticated:true, token }))
-
                 navigate('/profile');
-            } else {
-                window.location.reload();
-                alert('An error has occurred during the process and authentication failed. Please try again')
             }
         } catch (error) {
+            window.location.reload();
+            alert('An error has occurred during the process and authentication failed. Please try again')
             console.error("Authentication error: ", error)
         }
     }

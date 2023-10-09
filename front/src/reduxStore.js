@@ -9,16 +9,25 @@ export const postAuth = createAsyncThunk(
     // type =
     "users/postAuthData",
     // payload =
-    async (navigate, { rejectWithValue }) => {
-        console.log("postAuth function called");
+    async ({ email, password, navigate }, { rejectWithValue }) => {
         try {
-            console.log("postAuth try called");
-            const response = await axios.post("http://localhost:3001/api/v1");
-            console.log("postAuth data : ", response);
+            const data = {
+                email: email,
+                password: password,
+            };
+            const config = {
+                headers: {
+                    "Content-type": "application/json"
+                }
+            };
+            const response = await axios.post("http://localhost:3001/api/v1/user/login", data, config);
+
             navigate('/profile');
+            console.log(response.data);
             return response.data;
+
         } catch (error) {
-            console.log("postAuth error called");
+            console.log("postAuth error called : ", error.message);
             rejectWithValue(error.response.data);
         }
     }
