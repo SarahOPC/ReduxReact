@@ -50,7 +50,11 @@ function ProfilePage() {
 }
             /* return (
                 <ProfilePageContainer>
-                    <HeaderComponent menuContent="Sign Out" to="/" />
+                    <HeaderComponent
+                        menuContent="Sign Out"
+                        onClick={handleSignOut}
+                        to="/"
+                    />
                     <BackgroundContainer>
                         <PurpleBackground />
                     </BackgroundContainer>

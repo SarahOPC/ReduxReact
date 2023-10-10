@@ -25,20 +25,23 @@ const Input = styled.input`
 
 function InputAuthFormComponent () {
     const navigate = useNavigate(); // Hook that allows to navigate between pages
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    let isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const dispatch = useDispatch();
+    const authenticationStatus = useSelector((state) => state.auth.authenticationStatus);
+    console.log(isAuthenticated);
+    console.log(authenticationStatus);
 
-    const handleSignIn = () => {
+    const handleSignIn = async () => {
         try {
             const email = document.getElementById("Username").value;
             const password = document.getElementById("Password").value;
-            dispatch(postAuth({ email, password, navigate }));
-            if(isAuthenticated) {
+            await dispatch(postAuth({ email, password }));
+            if(authenticationStatus === "success") {
                 navigate('/profile');
+            } else if(authenticationStatus === "failed") {
+                alert('An error has occurred during the process and authentication failed. Please try again');
             }
         } catch (error) {
-            window.location.reload();
-            alert('An error has occurred during the process and authentication failed. Please try again')
             console.error("Authentication error: ", error)
         }
     }

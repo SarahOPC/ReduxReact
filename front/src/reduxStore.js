@@ -12,7 +12,7 @@ export const postAuth = createAsyncThunk(
     // type =
     "users/postAuthData",
     // payload =
-    async ({ email, password, navigate }, { rejectWithValue }) => {
+    async ({ email, password }, { rejectWithValue }) => {
         try {
             const data = {
                 email: email,
@@ -23,13 +23,18 @@ export const postAuth = createAsyncThunk(
                     "Content-type": "application/json"
                 }
             };
+            console.log("Before Axios POST request...");
             const response = await axios.post("http://localhost:3001/api/v1/user/login", data, config);
-
-            navigate('/profile');
-            return response.data;
-
+            console.log("After Axios POST request...");
+            console.log(response.status);
+            console.log(response);
+            if(response.status === 200) {
+                return response.data;
+            } else {
+                return rejectWithValue(response.data);
+            }
         } catch (error) {
-            rejectWithValue(error.response.data);
+            return rejectWithValue(error.response.data);
         }
     }
 )
@@ -37,6 +42,7 @@ export const postAuth = createAsyncThunk(
 const authSlice = createSlice({
     name: "authentication",
     initialState: {
+        authenticationStatus: "idle", // inactive
         isAuthenticated: false,
         token: null,
         isLoading: false,
@@ -54,15 +60,18 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(postAuth.pending, (state) => {
+            state.authenticationStatus = "loading";
             state.isAuthenticated = false;
             state.isLoading = true;
         })
         .addCase(postAuth.fulfilled, (state, { payload }) => {
+            state.authenticationStatus = "success";
             state.isAuthenticated = true;
             state.token = payload.token;
             state.isLoading = false;
         })
         .addCase(postAuth.rejected, (state) => {
+            state.authenticationStatus = "failed";
             state.isAuthenticated = false;
             state.token = null;
             state.isLoading = false;
