@@ -42,7 +42,7 @@ export const postAuth = createAsyncThunk(
 const authSlice = createSlice({
     name: "authentication",
     initialState: {
-        authenticationStatus: "idle", // inactive
+        authenticationStatus: "not active",
         isAuthenticated: false,
         token: null,
         isLoading: false,
@@ -55,6 +55,7 @@ const authSlice = createSlice({
         clearAuthentication: (state, action) => {
             state.isAuthenticated = false;
             state.token = null;
+            state.authenticationStatus = "not active";
         },
     },
     extraReducers: (builder) => {

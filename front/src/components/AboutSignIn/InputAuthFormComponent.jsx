@@ -3,6 +3,7 @@ import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { postAuth } from "../../reduxStore";
+import { useEffect } from "react";
 
 const InputAuthFormContainer = styled.div`
     width: 95%;
@@ -26,25 +27,31 @@ const Input = styled.input`
 function InputAuthFormComponent () {
     const navigate = useNavigate(); // Hook that allows to navigate between pages
     let isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    const dispatch = useDispatch();
     const authenticationStatus = useSelector((state) => state.auth.authenticationStatus);
+    const dispatch = useDispatch();
     console.log(isAuthenticated);
     console.log(authenticationStatus);
-
+    
     const handleSignIn = async () => {
         try {
             const email = document.getElementById("Username").value;
             const password = document.getElementById("Password").value;
             await dispatch(postAuth({ email, password }));
-            if(authenticationStatus === "success") {
-                navigate('/profile');
-            } else if(authenticationStatus === "failed") {
-                alert('An error has occurred during the process and authentication failed. Please try again');
-            }
+
         } catch (error) {
             console.error("Authentication error: ", error)
         }
     }
+
+    // To check the changes of states in authentication
+    useEffect(() => {
+        if(authenticationStatus === "success") {
+            navigate('/profile');
+        } else if(authenticationStatus === "failed") {
+            alert('An error has occurred during the process and authentication failed. Please try again');
+        }
+    }, [authenticationStatus, navigate]);
+
     return (
         <InputAuthFormContainer>
             <form>
