@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { postAuth } from "../../reduxStore";
+import { getUserInfos, postAuth } from "../../reduxStore";
 import { useEffect } from "react";
 
 const InputAuthFormContainer = styled.div`
@@ -29,8 +29,8 @@ function InputAuthFormComponent () {
     let isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const authenticationStatus = useSelector((state) => state.auth.authenticationStatus);
     const dispatch = useDispatch();
+    const token = useSelector((state) => state.auth.token);
     console.log(isAuthenticated);
-    console.log(authenticationStatus);
     
     const handleSignIn = async () => {
         try {
@@ -46,11 +46,14 @@ function InputAuthFormComponent () {
     // To check the changes of states in authentication
     useEffect(() => {
         if(authenticationStatus === "success") {
+            if(token) {
+                dispatch(getUserInfos({ token }));
+            }
             navigate('/profile');
         } else if(authenticationStatus === "failed") {
             alert('An error has occurred during the process and authentication failed. Please try again');
         }
-    }, [authenticationStatus, navigate]);
+    }, [authenticationStatus, navigate, dispatch, token]);
 
     return (
         <InputAuthFormContainer>

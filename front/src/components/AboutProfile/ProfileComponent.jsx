@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
 import { AccountComponent } from "./AccountComponent";
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUserInfos, setUserInfo } from "../../reduxStore";
 // useSelector allows to retrieve informations in Redux
 
 const WelcomeElement = styled.div`
@@ -27,6 +29,21 @@ const ProfileUserContainer = styled.div`
 function ProfileComponent() {
     const navigate = useNavigate();
     const user = useSelector((state) => state.user);
+    const token = useSelector((state) => state.auth.token);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(!user.userFirstName || !user.userLastName) {
+            // Only dispatch getUserInfos if user info is not already available
+            if(token) {
+                dispatch(getUserInfos({ token }))
+                    .then((action) => {
+                        const { userFirstName, userLastName } = action.payload;
+                        dispatch(setUserInfo({userFirstName, userLastName}));
+                    });
+            }
+        }
+    }, [dispatch, token, user.userFirstName, user.userLastName]);
 
     return (
         <ProfileUserContainer>

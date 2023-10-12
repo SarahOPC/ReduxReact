@@ -23,13 +23,9 @@ export const postAuth = createAsyncThunk(
                     "Content-type": "application/json"
                 }
             };
-            console.log("Before Axios POST request...");
             const response = await axios.post("http://localhost:3001/api/v1/user/login", data, config);
-            console.log("After Axios POST request...");
-            console.log(response.status);
-            console.log(response);
             if(response.status === 200) {
-                return response.data;
+                return { token: response.data.body.token };
             } else {
                 return rejectWithValue(response.data);
             }
@@ -80,10 +76,41 @@ const authSlice = createSlice({
     }
 });
 
+export const getUserInfos = createAsyncThunk(
+    "users/getUserInformations",
+    async({ token }, { rejectWithValue }) => {
+        try{
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+            const response = await axios.post("http://localhost:3001/api/v1/user/profile", token, config);
+            if(response.status === 200) {
+                const userFirstName = response.data.body.firstName;
+                const userLastName = response.data.body.lastName;
+                
+                return { userFirstName, userLastName };
+            } else {
+                return rejectWithValue(response.data);
+            }
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+)
+
 const userSlice = createSlice({
     name: "user",
-    initialState: [],
+    initialState: {
+        userFirstName: "",
+        userLastName: "",
+    },
     reducers: {
+        setUserInfo: (state, action) => {
+            state.userFirstName = action.payload.userFirstName;
+            state.userLastName = action.payload.userLastName;
+        },
         // {type: user/changeFirstName, payload: "new firstName"}
         // splice(userIndex, 1, {userFirstName: action.payload}) removes
         // firstname at position "userIndex" one element and replace it by action.payload
@@ -110,7 +137,7 @@ const userSlice = createSlice({
 // action creators
 // Helpers to not re write every time the functions with type and payload
 // Reduce risks of errors (typo, ...)
-export const { changeFirstName, changeLastName } = userSlice.actions;
+export const { setUserInfo, changeFirstName, changeLastName } = userSlice.actions;
 export const { setAuthentication, clearAuthentication } = authSlice.actions;
 
 // Global store = authorize to use in the reducer all the functions included in the reducers of each slice
