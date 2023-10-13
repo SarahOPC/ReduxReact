@@ -1,7 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useEffect } from 'react';
+import { getUserInfos, setUserInfo } from '../../reduxStore';
+import { useDispatch, useSelector } from 'react-redux';
 
 const MenuContainer = styled.div`
     color: #2C3E50;
@@ -20,14 +24,42 @@ const IconContainer = styled.div`
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
-    margin-right: 0.5em;
+    display: flex;
+`;
+
+const FirstNameOfUser = styled.div`
+    font-weight: bold;
+    margin-right: 0.3em;
 `;
 
 function MenuComponent({ content, to, onClick }) {
+
+    const token = useSelector((state) => state.auth.token);
+    const dispatch = useDispatch();
+    const userFirstName = useSelector((state) => state.user.userFirstName);
+
+    useEffect(() => {
+        if(token) {
+            dispatch(getUserInfos({ token }))
+                .then((action) => {
+                    const { userFirstName } = action.payload;
+                    dispatch(setUserInfo({userFirstName}));
+                });
+        }
+    }, [dispatch, token, userFirstName]);
+
     return (
         <MenuContainer>
             <IconContainer>
-                <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', }} />
+                {token && (
+                    <div>
+                        <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', }} />
+                        <FirstNameOfUser>
+                            {userFirstName}
+                        </FirstNameOfUser>
+                    </div>
+                )}
+                <FontAwesomeIcon icon={faRightFromBracket} style={{color: "#2C3E50",}} />
             </IconContainer>
             <Link to={to} onClick={onClick}>
                 <MenuItem>{content}</MenuItem>

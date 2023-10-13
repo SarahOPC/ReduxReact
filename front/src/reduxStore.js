@@ -115,7 +115,6 @@ export const changeUserInfos = createAsyncThunk(
                 }
             }
             const response = await axios.put("http://localhost:3001/api/v1/user/profile", data, config);
-            console.log(response)
             if(response.status === 200) {                
                 return response.data;
             } else {
