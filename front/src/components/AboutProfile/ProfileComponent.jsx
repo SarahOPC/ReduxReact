@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
-import { AccountComponent } from "./AccountComponent";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -67,9 +66,6 @@ function ProfileComponent() {
                     marginBottom: "2em"
                 }}
             />
-            <AccountComponent>
-            </AccountComponent>
-
         </ProfileUserContainer>
     )
 }

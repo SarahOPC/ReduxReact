@@ -6,6 +6,7 @@ import { PurpleBackground } from "../components/AboutBackground/BackgroundPurple
 import { ProfileComponent } from "../components/AboutProfile/ProfileComponent";
 import { useDispatch } from "react-redux";
 import { clearAuthentication } from "../reduxStore";
+import { AccountComponent } from "../components/AboutProfile/AccountComponent";
 
 const ProfilePageContainer = styled.div`
     position: relative;
@@ -22,6 +23,12 @@ const BackgroundContainer = styled.div`
 const ProfileComponentContainer = styled.div`
     display: flex;
     justify-content: center;
+`;
+
+const AccountContainer = styled.div`
+    display: flex;
+    flex-direction:column;
+    align-items: center;
 `;
 
 function ProfilePage() {
@@ -44,25 +51,12 @@ function ProfilePage() {
             <ProfileComponentContainer>
                 <ProfileComponent />
             </ProfileComponentContainer>
+            <AccountContainer>
+                <AccountComponent />
+            </AccountContainer>
             <FooterComponent />
         </ProfilePageContainer>
     )
 }
-            /* return (
-                <ProfilePageContainer>
-                    <HeaderComponent
-                        menuContent="Sign Out"
-                        onClick={handleSignOut}
-                        to="/"
-                    />
-                    <BackgroundContainer>
-                        <PurpleBackground />
-                    </BackgroundContainer>
-                    <ProfileComponentContainer>
-                        <EditProfileComponent />
-                    </ProfileComponentContainer>
-                    <FooterComponent />
-                </ProfilePageContainer>
-            ) */
 
 export { ProfilePage };

@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { ButtonsComponent } from "../CommonComponents/ButtonsComponent";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { changeFirstName, changeLastName } from "../../reduxStore";
+import { useEffect } from "react";
+import { getUserInfos, setUserInfo, changeUserInfos } from "../../reduxStore";
+
 // useSelector allows to retrieve informations in Redux
 // useDispatch allows to "talk" to Redux by saying "do this action"
 
@@ -39,22 +41,49 @@ const RightBox = styled.div`
 function InputComponent({ userFirstNameToEdit, userLastNameToEdit }) {
     const userFirstName = useSelector((state) => state.user.userFirstName);
     const userLastName = useSelector((state) => state.user.userLastName);
+    const token = useSelector((state) => state.auth.token);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleSaveClick = () => {
+    useEffect(() => {
+        if(!userFirstName || !userLastName) {
+            // Only dispatch getUserInfos if user info is not already available
+            if(token) {
+                dispatch(getUserInfos({ token }))
+                    .then((action) => {
+                        const { userFirstName, userLastName } = action.payload;
+                        dispatch(setUserInfo({userFirstName, userLastName}));
+                    });
+            }
+        }
+    }, [dispatch, token, userFirstName, userLastName]);
+
+    
+    const handleSaveClick = async () => {
         const newFirstName = document.getElementById('userFirstNameToEdit').value;
         const newLastName = document.getElementById('userLastNameToEdit').value;
 
-        dispatch(changeFirstName(newFirstName));
-        dispatch(changeLastName(newLastName));
-        navigate('/profile');
+        if(token && newFirstName && newLastName) {
+            await dispatch(getUserInfos({ token }))
+            .then(() => {
+                    dispatch(changeUserInfos({ token, newFirstName, newLastName }))
+                        .then(() => {
+                            navigate('/profile');
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
     };
 
     const handleCancelClick = () => {
         navigate('/profile');
     }
-
+ 
     return (
         <InputContainer>
             <LeftBox>

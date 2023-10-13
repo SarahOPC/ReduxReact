@@ -25,7 +25,7 @@ function EditProfileComponent() {
         <ProfileUserContainer>
             <WelcomeElement>
                 <Welcome>Welcome back</Welcome>
-                <InputComponent userFirstNameToEdit="Tony" userLastNameToEdit="Jarvis" />
+                <InputComponent />
             </WelcomeElement>
             <AccountComponent>
             </AccountComponent>

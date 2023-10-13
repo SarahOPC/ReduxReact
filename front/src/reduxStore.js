@@ -100,6 +100,33 @@ export const getUserInfos = createAsyncThunk(
     }
 )
 
+export const changeUserInfos = createAsyncThunk(
+    "users/changeUserInformations",
+    async({ token, newFirstName, newLastName }, { rejectWithValue }) => {
+        try{
+            const data = {
+                firstName: newFirstName,
+                lastName: newLastName,
+            };
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-type": "application/json"
+                }
+            }
+            const response = await axios.put("http://localhost:3001/api/v1/user/profile", data, config);
+            console.log(response)
+            if(response.status === 200) {                
+                return response.data;
+            } else {
+                return rejectWithValue(response.data);
+            }
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+)
+
 const userSlice = createSlice({
     name: "user",
     initialState: {
