@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const PurpleContainer = styled.div`
     background-color: #12002b;
-    height: 100em;
+    height: 141em;
     z-index: -1;
 `;
 
