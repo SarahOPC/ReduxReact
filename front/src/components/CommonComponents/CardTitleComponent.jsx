@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { PurpleBackground } from '../AboutBackground/BackgroundPurpleComponent';
+import { TransactionDetail } from "../AboutDetails/TransactionDetailComponent";
 
 const AccountContainer = styled.div`
     background-color: #FFFFFF;
@@ -58,6 +59,12 @@ function CardTitle() {
                     </AccountElement>
                 </AccountContainer>
             </CardTitleContainer>
+            <TransactionDetail newAmount="$5.00" newBalance="$2082.79" />
+            <TransactionDetail newAmount="$10.00" newBalance="$2087.79" />
+            <TransactionDetail newAmount="$20.00" newBalance="$2097.79" />
+            <TransactionDetail newAmount="$30.00" newBalance="$2117.79" />
+            <TransactionDetail newAmount="$40.00" newBalance="$2147.79" />
+            <TransactionDetail newAmount="$50.00" newBalance="$2187.79" />
             <BackgroundContainer>
                 <PurpleBackground />
             </BackgroundContainer>
