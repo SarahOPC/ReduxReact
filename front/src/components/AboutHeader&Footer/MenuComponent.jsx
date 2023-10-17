@@ -32,7 +32,7 @@ const FirstNameOfUser = styled.div`
     margin-right: 0.3em;
 `;
 
-function MenuComponent({ content, to, onClick }) {
+function MenuComponent({ to, onClick }) {
 
     const token = useSelector((state) => state.auth.token);
     const dispatch = useDispatch();
@@ -51,19 +51,26 @@ function MenuComponent({ content, to, onClick }) {
     return (
         <MenuContainer>
             <IconContainer>
-                {token && (
+                {token ? (
                     <div>
                         <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', }} />
                         <FirstNameOfUser>
                             {userFirstName}
                         </FirstNameOfUser>
+                        <FontAwesomeIcon icon={faRightFromBracket} style={{color: "#2C3E50",}} />
+                        <Link to={to} onClick={onClick}>
+                            <MenuItem>Sign Out</MenuItem>
+                        </Link>
+                    </div>
+                ) : (
+                    <div>
+                        <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', }} />
+                        <Link to={to} onClick={onClick}>
+                            <MenuItem>Sign In</MenuItem>
+                        </Link>
                     </div>
                 )}
-                <FontAwesomeIcon icon={faRightFromBracket} style={{color: "#2C3E50",}} />
             </IconContainer>
-            <Link to={to} onClick={onClick}>
-                <MenuItem>{content}</MenuItem>
-            </Link>
         </MenuContainer>
     )
 }

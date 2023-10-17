@@ -41,7 +41,6 @@ function ProfilePage() {
     return (
         <ProfilePageContainer>
             <HeaderComponent
-                menuContent="Sign Out"
                 onClick={handleSignOut}
                 to="/"
             />

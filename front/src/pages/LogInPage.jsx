@@ -25,7 +25,7 @@ const SignInComponentContainer = styled.div`
 function LogInPage() {
     return (
         <LogInPageContainer>
-            <HeaderComponent menuContent="Sign In" />
+            <HeaderComponent />
             <BackgroundContainer>
                 <PurpleBackground />
             </BackgroundContainer>

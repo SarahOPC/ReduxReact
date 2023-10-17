@@ -33,7 +33,6 @@ function EditProfilePage() {
     return (
         <ProfilePageContainer>
             <HeaderComponent
-                menuContent="Sign Out"
                 onClick={handleSignOut}
                 to="/"
             />
