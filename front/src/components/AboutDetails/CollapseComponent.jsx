@@ -1,6 +1,4 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import styled from "styled-components";
 import { SelectDropdown } from './SelectDropdownComponent';
@@ -43,8 +41,6 @@ function CollapseComponent() {
 
     return (
         <CollapseContainer>
-            <FontAwesomeIcon icon={faChevronUp} style={{color: '#2C3E50'}} />
-            <FontAwesomeIcon icon={faChevronDown} style={{color: '#2C3E50'}} />
             <TransactionType>Transaction Type: Electronic</TransactionType>
             <CategoryContainer onClick={() => setIsSelectDropdownOpen(true)}>
                 <CategoryText>Category: {selectedCategory}</CategoryText>
