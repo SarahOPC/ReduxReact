@@ -160,16 +160,30 @@ const userSlice = createSlice({
     }
 });
 
+const menuSlice = createSlice({
+    name: 'menu',
+    initialState: {
+        userFirstName: '',
+    },
+    reducers: {
+        setUserFirstName: (state, action) => {
+            state.userFirstName = action.payload;
+        },
+    },
+});
+
 // action creators
 // Helpers to not re write every time the functions with type and payload
 // Reduce risks of errors (typo, ...)
 export const { setUserInfo, changeFirstName, changeLastName } = userSlice.actions;
 export const { setAuthentication, clearAuthentication } = authSlice.actions;
+export const { setUserFirstName } = menuSlice.actions;
 
 // Global store = authorize to use in the reducer all the functions included in the reducers of each slice
 export const store = configureStore({
     reducer: {
         user: userSlice.reducer,
         auth: authSlice.reducer,
+        menu: menuSlice.reducer,
     }
 });
