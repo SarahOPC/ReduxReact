@@ -27,7 +27,7 @@ function LogInPage() {
         <LogInPageContainer>
             <HeaderComponent />
             <BackgroundContainer>
-                <PurpleBackground />
+                <PurpleBackground customHeight="51em"/>
             </BackgroundContainer>
             <SignInComponentContainer>
                 <SignInComponent />

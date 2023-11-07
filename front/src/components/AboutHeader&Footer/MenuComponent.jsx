@@ -17,6 +17,22 @@ const MenuItem = styled.div`
     font-weight: bold;
     text-decoration: none;
     margin-right: 1.5em;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    color: #2C3E50;
+
+    &:visited, &:focus, &:active {
+        text-decoration: none;
+        color: #2C3E50;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
 `;
 
 const IconContainer = styled.div`
@@ -30,6 +46,11 @@ const IconContainer = styled.div`
 const FirstNameOfUser = styled.div`
     font-weight: bold;
     margin-right: 0.3em;
+`;
+
+const IconAndName = styled.div`
+    display: flex;
+    align-items: center;
 `;
 
 function MenuComponent({ to, onClick }) {
@@ -52,23 +73,23 @@ function MenuComponent({ to, onClick }) {
         <MenuContainer>
             <IconContainer>
                 {token ? (
-                    <div>
-                        <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', }} />
+                    <IconAndName>
+                        <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', paddingRight: "0.5em"}} />
                         <FirstNameOfUser>
                             {userFirstName}
                         </FirstNameOfUser>
-                        <FontAwesomeIcon icon={faRightFromBracket} style={{color: "#2C3E50",}} />
+                        <FontAwesomeIcon icon={faRightFromBracket} style={{color: "#2C3E50", paddingRight: "0.5em"}} />
                         <Link to={to} onClick={onClick}>
                             <MenuItem>Sign Out</MenuItem>
                         </Link>
-                    </div>
+                    </IconAndName>
                 ) : (
-                    <div>
-                        <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', }} />
-                        <Link to={to} onClick={onClick}>
+                    <IconAndName>
+                        <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', paddingRight: "0.5em"}} />
+                        <StyledLink to={to} onClick={onClick}>
                             <MenuItem>Sign In</MenuItem>
-                        </Link>
-                    </div>
+                        </StyledLink>
+                    </IconAndName>
                 )}
             </IconContainer>
         </MenuContainer>

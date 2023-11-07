@@ -27,7 +27,7 @@ function SignInComponent() {
     return (
         <SignInContainer>
             <IconContainer>
-                <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', }} />
+                <FontAwesomeIcon icon={faCircleUser} style={{color: '#2C3E50', paddingRight: "0.5em"}} />
             </IconContainer>
             <SignInTitle>Sign In</SignInTitle>
             <InputAuthFormComponent />

@@ -7,6 +7,7 @@ const BankTreeImage = styled.img`
     background-repeat: no-repeat;
     position: relative;
     height: 300px;
+    width: 390px;
     margin-top: -50px;
     z-index: 0;
 `;
