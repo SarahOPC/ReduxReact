@@ -37,7 +37,7 @@ function EditProfilePage() {
                 to="/"
             />
             <BackgroundContainer>
-                <PurpleBackground />
+                <PurpleBackground customHeight="61em" />
             </BackgroundContainer>
             <ProfileComponentContainer>
                 <EditProfileComponent />

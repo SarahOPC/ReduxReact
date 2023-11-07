@@ -7,6 +7,7 @@ const WelcomeElement = styled.div`
     font-weight: 700;
     font-size: 2em;
     margin: 0.7em 0em;
+    text-align: center;
 `;
 
 const Welcome = styled.div`

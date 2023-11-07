@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const PurpleContainer = styled.div`
     background-color: #12002b;
-    height: ${(props) => props.customHeight || '141em'};
+    min-height: ${(props) => props.customHeight};
     z-index: -1;
 `;
 

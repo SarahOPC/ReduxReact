@@ -45,7 +45,7 @@ function ProfilePage() {
                 to="/"
             />
             <BackgroundContainer>
-                <PurpleBackground />
+                <PurpleBackground customHeight="61em" />
             </BackgroundContainer>
             <ProfileComponentContainer>
                 <ProfileComponent />

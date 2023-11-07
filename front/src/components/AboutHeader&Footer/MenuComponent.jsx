@@ -46,6 +46,7 @@ const IconContainer = styled.div`
 const FirstNameOfUser = styled.div`
     font-weight: bold;
     margin-right: 0.3em;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
 `;
 
 const IconAndName = styled.div`

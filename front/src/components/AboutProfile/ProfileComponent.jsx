@@ -11,6 +11,7 @@ const WelcomeElement = styled.div`
     font-weight: 700;
     font-size: 2em;
     margin: 0.7em 0em;
+    text-align: center;
 `;
 
 const Welcome = styled.div`
@@ -48,7 +49,7 @@ function ProfileComponent() {
         <ProfileUserContainer>
             <WelcomeElement>
                 <Welcome>Welcome back</Welcome>
-                <WelcomeName>{user.userFirstName} {user.userLastName}</WelcomeName>
+                <WelcomeName>{user.userFirstName} {user.userLastName} !</WelcomeName>
             </WelcomeElement>
             <ButtonsComponent 
                 type="button"
