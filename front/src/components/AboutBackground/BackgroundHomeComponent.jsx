@@ -10,6 +10,14 @@ const BankTreeImage = styled.img`
     width: 390px;
     margin-top: -50px;
     z-index: 0;
+
+    @media (min-width: 768px) {
+        width: 85em;
+        height: 50em;
+        position: absolute;
+        margin-top: 9%;
+        left: 28%;
+    }
 `;
 
 const BackgroundHomeComponentContainer = styled.div`

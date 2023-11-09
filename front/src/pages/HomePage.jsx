@@ -14,6 +14,11 @@ const HomeComponent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (min-width: 768px) {
+        align-items: flex-start;
+        margin-left: 6em;
+    }
 `;
 
 function HomePage() {

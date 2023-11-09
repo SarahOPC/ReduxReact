@@ -11,6 +11,10 @@ const LaiusContainer = styled.div`
     width: 13em;
     height: 6em;
     margin: 1.5em 1.5em 1.5em 2.5em;
+    
+    @media (min-width: 768px) {
+        transform: translate(457%, 125%);
+    }
 `;
 
 const Slogan = styled.div`
