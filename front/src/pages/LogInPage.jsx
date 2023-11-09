@@ -22,16 +22,25 @@ const SignInComponentContainer = styled.div`
     margin: 3em 0em 18em 3.5em;
 `;
 
+const ContainerForDesktopStyles = styled.div`
+    @media (min-width: 768px) {
+        display: flex;
+        justify-content: center;
+    }
+`;
+
 function LogInPage() {
     return (
         <LogInPageContainer>
             <HeaderComponent />
-            <BackgroundContainer>
-                <PurpleBackground customheight="51em"/>
-            </BackgroundContainer>
-            <SignInComponentContainer>
-                <SignInComponent />
-            </SignInComponentContainer>
+            <ContainerForDesktopStyles>
+                <BackgroundContainer>
+                    <PurpleBackground customheight="51em"/>
+                </BackgroundContainer>
+                <SignInComponentContainer>
+                    <SignInComponent />
+                </SignInComponentContainer>
+            </ContainerForDesktopStyles>
             <FooterComponent />
         </LogInPageContainer>
     )

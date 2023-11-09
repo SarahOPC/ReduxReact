@@ -13,7 +13,7 @@ const LaiusContainer = styled.div`
     margin: 1.5em 1.5em 1.5em 2.5em;
     
     @media (min-width: 768px) {
-        transform: translate(457%, 125%);
+        transform: translate(457%, 215%);
     }
 `;
 

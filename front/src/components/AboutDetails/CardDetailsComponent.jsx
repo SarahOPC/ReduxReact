@@ -9,6 +9,12 @@ const AccountContainer = styled.div`
     border: 1px solid black;
     width: 17em;
     margin-top: 2em;
+
+    @media (min-width: 768px) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
 `;
 
 const AccountElement = styled.div`
@@ -16,6 +22,7 @@ const AccountElement = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    align-items: center;
 `;
 
 const AccountTitle = styled.div`
@@ -47,6 +54,14 @@ const BackgroundContainer = styled.div`
     z-index: -1;
 `;
 
+const ContainerForDesktopStyles = styled.div`
+    @media (min-width: 768px) {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+`;
+
 function CardDetails() {
     return (
         <CardTitleContainerWithBackground>
@@ -59,12 +74,14 @@ function CardDetails() {
                     </AccountElement>
                 </AccountContainer>
             </CardTitleContainer>
-            <TransactionDetail newAmount="$5.00" newBalance="$2082.79" />
-            <TransactionDetail newAmount="$10.00" newBalance="$2087.79" />
-            <TransactionDetail newAmount="$20.00" newBalance="$2097.79" />
-            <TransactionDetail newAmount="$30.00" newBalance="$2117.79" />
-            <TransactionDetail newAmount="$40.00" newBalance="$2147.79" />
-            <TransactionDetail newAmount="$50.00" newBalance="$2187.79" />
+            <ContainerForDesktopStyles>
+                <TransactionDetail newAmount="$5.00" newBalance="$2082.79" />
+                <TransactionDetail newAmount="$10.00" newBalance="$2087.79" />
+                <TransactionDetail newAmount="$20.00" newBalance="$2097.79" />
+                <TransactionDetail newAmount="$30.00" newBalance="$2117.79" />
+                <TransactionDetail newAmount="$40.00" newBalance="$2147.79" />
+                <TransactionDetail newAmount="$50.00" newBalance="$2187.79" />
+            </ContainerForDesktopStyles>
             <BackgroundContainer>
                 <PurpleBackground />
             </BackgroundContainer>

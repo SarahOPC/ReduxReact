@@ -33,6 +33,10 @@ const MenuItem = styled.div`
 const StyledLink = styled(Link)`
     text-decoration: none;
     color: inherit;
+
+    @media (min-width: 768px) {
+        margin-right: 2em;
+    }
 `;
 
 const IconContainer = styled.div`

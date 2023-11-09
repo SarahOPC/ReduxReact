@@ -8,6 +8,12 @@ const AccountContainer = styled.div`
     margin-bottom: 2em;
     border: 1px solid black;
     width: 17em;
+
+    @media (min-width: 768px) {
+        width: 75em;
+        display: flex;
+        justify-content: space-between;
+    }
 `;
 
 const AccountElement = styled.div`
@@ -32,6 +38,14 @@ const AccountDescription = styled.div`
 const AccountItems = styled.div`
 `;
 
+const ContainerForDesktopStyles = styled.div`
+    @media (min-width: 768px) {
+        width: 13em;
+        height: fit-content;
+        align-self: center;
+    }
+`;
+
 function AccountComponent() {
     const navigate = useNavigate();
     return (
@@ -42,19 +56,21 @@ function AccountComponent() {
                     <AccountAmount>$2,082.79</AccountAmount>
                     <AccountDescription>Available Balance</AccountDescription>
                 </AccountElement>
-                <ButtonsComponent
-                    type="button"
-                    buttonContent="View transactions"
-                    onClick={() => {
-                        navigate('/details');
-                    }}
-                    customStyles={{
-                        fontSize: "1.1em",
-                        borderRightStyle: "outset",
-                        borderBottomStyle: "outset",
-                        borderColor: "#B3B3B3"
-                    }}
-                />
+                <ContainerForDesktopStyles>
+                    <ButtonsComponent
+                        type="button"
+                        buttonContent="View transactions"
+                        onClick={() => {
+                            navigate('/details');
+                        }}
+                        customStyles={{
+                            fontSize: "1.1em",
+                            borderRightStyle: "outset",
+                            borderBottomStyle: "outset",
+                            borderColor: "#B3B3B3"
+                        }}
+                    />
+                </ContainerForDesktopStyles>
             </AccountContainer>
             <AccountContainer>
                 <AccountElement>
@@ -62,16 +78,18 @@ function AccountComponent() {
                     <AccountAmount>$10,928.42</AccountAmount>
                     <AccountDescription>Available Balance</AccountDescription>
                 </AccountElement>
-                <ButtonsComponent
-                    type="button"
-                    buttonContent="View transactions"
-                    customStyles={{
-                        fontSize: "1.1em",
-                        borderRightStyle: "outset",
-                        borderBottomStyle: "outset",
-                        borderColor: "#B3B3B3"
-                    }}
-                />
+                <ContainerForDesktopStyles>
+                    <ButtonsComponent
+                        type="button"
+                        buttonContent="View transactions"
+                        customStyles={{
+                            fontSize: "1.1em",
+                            borderRightStyle: "outset",
+                            borderBottomStyle: "outset",
+                            borderColor: "#B3B3B3"
+                        }}
+                    />
+                </ContainerForDesktopStyles>
             </AccountContainer>
             <AccountContainer>
                 <AccountElement>
@@ -79,16 +97,18 @@ function AccountComponent() {
                     <AccountAmount>$184.30</AccountAmount>
                     <AccountDescription>Current Balance</AccountDescription>
                 </AccountElement>
-                <ButtonsComponent
-                    type="button"
-                    buttonContent="View transactions"
-                    customStyles={{
-                        fontSize: "1.1em",
-                        borderRightStyle: "outset",
-                        borderBottomStyle: "outset",
-                        borderColor: "#B3B3B3"
-                    }}
-                />
+                <ContainerForDesktopStyles>
+                    <ButtonsComponent
+                        type="button"
+                        buttonContent="View transactions"
+                        customStyles={{
+                            fontSize: "1.1em",
+                            borderRightStyle: "outset",
+                            borderBottomStyle: "outset",
+                            borderColor: "#B3B3B3"
+                        }}
+                    />
+                </ContainerForDesktopStyles>
             </AccountContainer>
         </AccountItems>
     )

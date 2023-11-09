@@ -15,9 +15,11 @@ const CategoryText = styled.div`
 `;
 
 const CategoryContainer = styled.div`
+        display: flex;
 `;
 
 const NotesContainer = styled.div`
+        display: flex;
 `;
 
 function CollapseComponent() {
@@ -44,7 +46,7 @@ function CollapseComponent() {
             <TransactionType>Transaction Type: Electronic</TransactionType>
             <CategoryContainer onClick={() => setIsSelectDropdownOpen(true)}>
                 <CategoryText>Category: {selectedCategory}</CategoryText>
-                <FontAwesomeIcon icon={faPencil} style={{color: "#47515F"}} />
+                <FontAwesomeIcon icon={faPencil} style={{color: "#47515F", marginLeft: "1.5em"}} />
             </CategoryContainer>
             {isSelectDropdownOpen ? (
                 <SelectDropdown selectedValue={selectedCategory} onChange={handleCategoryChange} />
@@ -55,7 +57,7 @@ function CollapseComponent() {
                     ) : (
                         <div>Notes: {notes}</div>
                     )}
-                    <FontAwesomeIcon icon={faPencil} style={{color: "#47515F"}} onClick={() => setIsNotesOpen(true)} />
+                    <FontAwesomeIcon icon={faPencil} style={{color: "#47515F", marginLeft: "1.5em"}} onClick={() => setIsNotesOpen(true)} />
             </NotesContainer>
         </CollapseContainer>
     )
