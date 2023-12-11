@@ -63,7 +63,25 @@ const ContainerForChebronAndDate = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 
+    .chevron-open {
+        @media (max-width: 767px) {
+            position: static;
+        }
+        @media (min-width: 768px) {
+            position: absolute;
+        }
+    }
+
+    .chevron-closed {
+        @media (max-width: 767px) {
+            position: static;
+        }
+        @media (min-width: 768px) {
+            position: absolute;
+        }
+    }
     @media (min-width: 768px) {
         display: flex;
         align-items: baseline;
@@ -80,7 +98,10 @@ function TransactionDetail({ newAmount, newBalance }) {
     return(
         <TransactionContainer>
             <ContainerForChebronAndDate>
-                <FontAwesomeIcon icon={isCollapseOpen ? faChevronUp : faChevronDown} style={{color: '#2C3E50'}} onClick={toggleCollapse} />
+                <FontAwesomeIcon    icon={isCollapseOpen ? faChevronUp : faChevronDown}
+                                    style={{color: '#2C3E50'}}
+                                    className={isCollapseOpen ? 'chevron-open' : 'chevron-closed'}
+                                    onClick={toggleCollapse} />
                 <ContainerForDesktopStyles>
                     <Date>June 20th, 2020</Date>
                     {isCollapseOpen && (

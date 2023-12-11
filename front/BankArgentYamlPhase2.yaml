@@ -15,6 +15,7 @@ paths:
         - transaction
       summary: View all the transactions of the current month
       description: View all the transactions of the current month
+                   Requires JWT Authorization header for user authentication
       operationId: getAllTransactions
       parameters:
         - name: monthId
@@ -22,8 +23,7 @@ paths:
           description: ID of the current month
           required: true
           schema:
-            type: integer
-            format: int64
+            $ref: '#/components/schemas/Month'
       responses:
         '200':
           description: successful operation
@@ -48,6 +48,7 @@ paths:
         - transaction
       summary: Find transaction by ID
       description: Returns the details of one particular transaction
+                   Requires JWT Authorization header for user authentication
       operationId: getTransactionById
       parameters:
         - name: transactionId
@@ -79,6 +80,7 @@ paths:
         - transaction
       summary: Add a particular information inside a particular transaction
       description: Add a particular information inside a particular transaction
+                   Requires JWT Authorization header for user authentication
       operationId: addInformationInTransaction
       parameters:
       - name: transactionId
@@ -139,6 +141,7 @@ paths:
         - transaction
       summary: Deletes a particular information from a particular transaction
       description: deletes a particular information from a particular transaction
+                   Requires JWT Authorization header for user authentication
       operationId: deleteInformation
       parameters:
         - name: informationId
@@ -181,6 +184,7 @@ paths:
         - transaction
       summary: Updates a particular information from a particular transaction
       description: Updates a particular information from a particular transaction
+                   Requires JWT Authorization header for user authentication
       operationId: updateInformation
       parameters:
         - name: informationId
@@ -266,6 +270,17 @@ components:
           type: string
       xml:
         name: '##default'
+    Month:
+      type: object
+      properties:
+        monthId:
+          type: integer
+          format: int64
+          example: 11
+        monthName:
+          type: string
+          example: November
+      description: Represents a month
   requestBodies:
     Transaction:
       description: Transaction object that needs to be added or updated
@@ -276,9 +291,11 @@ components:
         application/xml:
           schema:
             $ref: '#/components/schemas/Transaction'
-    
   securitySchemes:
     jwt_auth:
       type: apiKey
       name: Authorization
       in: header
+      description: JWT Authorization header for user authentication
+security:
+    - jwt_auth: []
