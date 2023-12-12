@@ -7,11 +7,7 @@ import { useEffect } from "react";
 
 const InputAuthFormContainer = styled.div`
     width: 95%;
-
-    label[for="username"],
-    label[for="password"] {
-        font-weight: 700;
-    }
+    text-align: -webkit-center;
 
     #RememberMe {
         margin-bottom: 1.3em;
@@ -22,6 +18,17 @@ const Input = styled.input`
     height: 2em;
     margin-bottom: 1.3em;
     width: 90%;
+`;
+
+const Label = styled.label`
+    font-weight: 700;
+    text-align: left;
+    align-self: flex-start;
+    margin-left: 5em;
+`;
+
+const LabelContainer = styled.div`
+    display: flex;
 `;
 
 function InputAuthFormComponent () {
@@ -58,19 +65,26 @@ function InputAuthFormComponent () {
     return (
         <InputAuthFormContainer>
             <form>
-                <label htmlFor="username">Username</label><br></br>
+                <LabelContainer>
+                    <Label htmlFor="username">Username</Label><br></br>
+                </LabelContainer>
                 <Input type="text" name="Username" id="Username" required /><br></br>
-                <label htmlFor="password">Password</label><br></br>
+                <LabelContainer>
+                    <Label htmlFor="password">Password</Label><br></br>
+                </LabelContainer>
                 <Input type="password" name="Password"id="Password" required /><br></br>
-                <label htmlFor="rememberMe">
+                <LabelContainer>
+                    <Label htmlFor="rememberMe">
                     <input type="checkbox" name="remember" id="RememberMe"/> Remember me
-                </label><br></br>
+                </Label><br></br>
+                </LabelContainer>
                 <ButtonsComponent
                     type="submit"
                     buttonContent="Sign In"
                     onClick={handleSignIn}
                     customStyles={{
-                        textDecoration: "underline"
+                        textDecoration: "underline",
+                        width: "63em",
                     }}
                 />
             </form>
