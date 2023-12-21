@@ -84,7 +84,7 @@ function InputAuthFormComponent () {
                     onClick={handleSignIn}
                     customStyles={{
                         textDecoration: "underline",
-                        width: "63em",
+                        width: "12em",
                     }}
                 />
             </form>
