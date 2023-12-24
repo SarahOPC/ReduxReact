@@ -7,26 +7,28 @@ info:
   version: 1.0.0
 tags:
   - name: transaction
-    description: Everything about transactions
+    description: Everything about transactions.
 paths:
   /user/transaction:
     get:
       tags:
         - transaction
-      summary: View all the transactions of the current month
-      description: View all the transactions of the current month
-                   Requires JWT Authorization header for user authentication
+      summary: View all the transactions of the current month.
+      description: View all the transactions of the current month.
+                   Requires JWT Authorization header for user authentication.
       operationId: getAllTransactions
       parameters:
-        - name: monthId
+        - name: month
           in: query
-          description: ID of the current month
+          description: Current month
           required: true
           schema:
-            $ref: '#/components/schemas/Month'
+            type: integer
+            format: int64
+            example: 1
       responses:
         '200':
-          description: successful operation
+          description: successful operation.
           content:
             application/json:
               schema:
@@ -39,7 +41,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Transaction'
         '400':
-          description: Invalid status value
+          description: Invalid status value.
       security:
       - jwt_auth: []
   /user/transaction/{transactionId}:
@@ -47,83 +49,66 @@ paths:
       tags:
         - transaction
       summary: Find transaction by ID
-      description: Returns the details of one particular transaction
-                   Requires JWT Authorization header for user authentication
+      description: Returns the details of one particular transaction.
+                   Requires JWT Authorization header for user authentication.
       operationId: getTransactionById
       parameters:
         - name: transactionId
           in: path
-          description: ID of transaction to return
+          description: ID of transaction to return.
           required: true
           schema:
             type: integer
             format: int64
+            example: 13
       responses:
         '200':
-          description: successful operation
+          description: successful operation.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Transaction'          
-            application/xml:
-              schema:
                 $ref: '#/components/schemas/Transaction'
         '400':
-          description: Invalid ID supplied
+          description: Invalid ID supplied.
         '404':
-          description: Transaction not found
+          description: Transaction not found.
       security:
       - jwt_auth: []
   /user/transaction/{transactionId}/update:
     put:
       tags:
         - transaction
-      summary: Updates, deletes or creates an information from a particular transaction
-      description: Updates a particular information from a particular transaction
-                   Requires JWT Authorization header for user authentication
+      summary: Updates, deletes or creates information for a given transaction.
+      description: Updates information for a given transaction.
+                   Requires JWT Authorization header for user authentication.
       operationId: updateInformation
       parameters:
         - name: transactionId
           in: path
-          description: Transaction id containing the information to update
+          description: Transaction id containing the information to update.
           required: true
           schema:
             type: integer
             format: int64
-      requestBody:  # Updated to accept an Information
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Transaction'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Transaction'
+            example: 13
+        
+        - in: body
+          name: transaction
+          description: The transaction to update.
+          schema:
+            type: object
+            properties:
+              category:
+                type: string
+              notes:
+                type: string
       responses:
         '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  category:
-                    type: string
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  category:
-                    type: string
+          description: Transaction updated.
         '400':
-          description: Invalid transaction value
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiResponse'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/ApiResponse'
+          description: Transaction update failed.
+        '404':
+          description: Transaction not found.
       security:
       - jwt_auth: []
   
@@ -140,41 +125,35 @@ components:
           example: 13
         category:
           type: string
-          description: Category of the transaction
-      description: Represents a transaction
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
+          example: "Food"
+        date:
           type: string
-      xml:
-        name: '##default'
-    Month:
-      type: object
-      properties:
-        monthId:
-          type: integer
-          format: int64
-          example: 11
-      description: Represents a month
-  requestBodies:
-    Transaction:
-      description: Transaction object that needs to be added or updated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Transaction'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Transaction'
+          format: date-time
+          example: "2023-02-28"
+        amount:
+          type: number
+          format: float
+          example: 5.12
+        balance:
+          type: number
+          format: float
+          example: 123.45
+        description:
+          type: string
+          example: "Golden Sun Bakery"
+        transactionType:
+          type: string
+          example: "Electronic"
+        notes:
+          type: string
+          example: "I am a note"
+      description: Represents a transaction.
   securitySchemes:
     jwt_auth:
       type: apiKey
       name: Authorization
       in: header
-      description: JWT Authorization header for user authentication
+      description: JWT Authorization header for user authentication.
+
 security:
     - jwt_auth: []
